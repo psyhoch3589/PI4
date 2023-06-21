@@ -1,25 +1,46 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChartType} from "@rinminase/ng-charts";
+import {data} from "../../../data";
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
-export class BarChartComponent {
+export class BarChartComponent implements OnInit{
+  Tweets=data;
+  happy_score:number[];
+  anger_score:number[];
+  index:number;
+  ngOnInit(): void {
+    for (let i = 0; i < 120; i += 10) {
+      const sum = this.Tweets.slice(i, i + 10).reduce((acc, val) => acc + val.sentiment.Happy, 0);
+      const sum2 = this.Tweets.slice(i, i + 10).reduce((acc, val) => acc + val.sentiment.Angry, 0);
+      this.happy_score.push(sum);
+      this.anger_score.push(sum2);
+    }
+    this.barChartData[0].data=this.happy_score;
+    this.barChartData[1].data=this.anger_score;
+  }
+
+  constructor() {
+    this.happy_score = [];
+    this.anger_score =  [];
+    this.index=0;
+  }
 
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
 
-  public mbarChartLabels:string[] = ['2012', '2013', '2014', '2015', '2016', '2017', '2018'];
+  public mbarChartLabels:string[] = ['Jan', 'Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
   public barChartType:ChartType  = 'bar';
   public barChartLegend:boolean = true;
 
   public barChartColors:Array<any> = [
     {
-      backgroundColor: 'rgba(105,159,177,0.2)',
+      backgroundColor: '#56e2b1',
       borderColor: 'rgba(105,159,177,1)',
       pointBackgroundColor: 'rgba(105,159,177,1)',
       pointBorderColor: '#fafafa',
@@ -27,7 +48,7 @@ export class BarChartComponent {
       pointHoverBorderColor: 'rgba(105,159,177)'
     },
     {
-      backgroundColor: 'rgba(77,20,96,0.3)',
+      backgroundColor: '#f16d7b',
       borderColor: 'rgba(77,20,96,1)',
       pointBackgroundColor: 'rgba(77,20,96,1)',
       pointBorderColor: '#fff',
@@ -36,8 +57,8 @@ export class BarChartComponent {
     }
   ];
   public barChartData:any[] = [
-    {data: [55, 60, 75, 82, 56, 62, 80], label: 'Company A'},
-    {data: [58, 55, 60, 79, 66, 57, 90], label: 'Company B'}
+    {data: new Array(12), label: 'Happiness'},
+    {data: new Array(12), label: 'Anger'}
   ];
 
   // events
