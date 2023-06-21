@@ -31,7 +31,24 @@ export class BarChartComponent implements OnInit{
 
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    legend: {
+      labels: {
+        fontColor: 'white'
+      }
+    },
+    scales: {
+      xAxes: [{
+        ticks: {
+          fontColor: 'white'
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          fontColor: 'white'
+        }
+      }]
+    }
   };
 
   public mbarChartLabels:string[] = ['Jan', 'Feb','Mar','Apr','May','Jun','Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];

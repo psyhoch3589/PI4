@@ -59,6 +59,11 @@ export class PieChartComponent implements OnInit{
 
   chartOptions = {
     responsive: true,
+    legend: {
+      labels: {
+        fontColor: 'white'
+      }
+    }
   };
 
 
