@@ -9,13 +9,15 @@ import { TweetsSectionComponent } from './tweets-section/tweets-section.componen
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { ChartsModule } from '@rinminase/ng-charts';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { TimelineChartComponent } from './timeline-chart/timeline-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
     KeyWordSectionComponent,
     TweetsSectionComponent,
     PieChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    TimelineChartComponent
   ],
   imports: [
     BrowserModule,

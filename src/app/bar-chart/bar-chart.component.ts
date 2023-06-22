@@ -87,17 +87,5 @@ export class BarChartComponent implements OnInit{
     console.log(e);
   }
 
-  public randomize():void {
-    let data = [
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      (Math.random() * 100),
-      Math.round(Math.random() * 100),
-      (Math.random() * 100),
-      Math.round(Math.random() * 100)];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
-  }
+
 }
